@@ -6,9 +6,54 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E09426E02DA92D4F0019ADF1 /* SleepShieldMonitor.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = E09426D42DA92D4F0019ADF1 /* SleepShieldMonitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E09426FA2DACF6840019ADF1 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = E09426F92DACF6840019ADF1 /* Auth */; };
+		E09426FC2DACF6840019ADF1 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = E09426FB2DACF6840019ADF1 /* Functions */; };
+		E09426FE2DACF6840019ADF1 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = E09426FD2DACF6840019ADF1 /* PostgREST */; };
+		E09427002DACF6840019ADF1 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = E09426FF2DACF6840019ADF1 /* Realtime */; };
+		E09427022DACF6840019ADF1 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = E09427012DACF6840019ADF1 /* Storage */; };
+		E09427042DACF6840019ADF1 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = E09427032DACF6840019ADF1 /* Supabase */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E09426DE2DA92D4F0019ADF1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E09426AD2DA909770019ADF1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E09426D32DA92D4F0019ADF1;
+			remoteInfo = SleepShieldMonitor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E09426E52DA92D4F0019ADF1 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				E09426E02DA92D4F0019ADF1 /* SleepShieldMonitor.appex in Embed ExtensionKit Extensions */,
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E09426B52DA909770019ADF1 /* sleep_now.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sleep_now.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E09426D42DA92D4F0019ADF1 /* SleepShieldMonitor.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = SleepShieldMonitor.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E09426E12DA92D4F0019ADF1 /* Exceptions for "SleepShieldMonitor" folder in "SleepShieldMonitor" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E09426D32DA92D4F0019ADF1 /* SleepShieldMonitor */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E09426B72DA909770019ADF1 /* sleep_now */ = {
@@ -16,10 +61,31 @@
 			path = sleep_now;
 			sourceTree = "<group>";
 		};
+		E09426D52DA92D4F0019ADF1 /* SleepShieldMonitor */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E09426E12DA92D4F0019ADF1 /* Exceptions for "SleepShieldMonitor" folder in "SleepShieldMonitor" target */,
+			);
+			path = SleepShieldMonitor;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E09426B22DA909770019ADF1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E09426FE2DACF6840019ADF1 /* PostgREST in Frameworks */,
+				E09426FC2DACF6840019ADF1 /* Functions in Frameworks */,
+				E09427042DACF6840019ADF1 /* Supabase in Frameworks */,
+				E09426FA2DACF6840019ADF1 /* Auth in Frameworks */,
+				E09427022DACF6840019ADF1 /* Storage in Frameworks */,
+				E09427002DACF6840019ADF1 /* Realtime in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E09426D12DA92D4F0019ADF1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				E09426B72DA909770019ADF1 /* sleep_now */,
+				E09426D52DA92D4F0019ADF1 /* SleepShieldMonitor */,
 				E09426B62DA909770019ADF1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				E09426B52DA909770019ADF1 /* sleep_now.app */,
+				E09426D42DA92D4F0019ADF1 /* SleepShieldMonitor.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,20 +123,50 @@
 				E09426B12DA909770019ADF1 /* Sources */,
 				E09426B22DA909770019ADF1 /* Frameworks */,
 				E09426B32DA909770019ADF1 /* Resources */,
+				E09426E52DA92D4F0019ADF1 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E09426DF2DA92D4F0019ADF1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				E09426B72DA909770019ADF1 /* sleep_now */,
 			);
 			name = sleep_now;
 			packageProductDependencies = (
+				E09426F92DACF6840019ADF1 /* Auth */,
+				E09426FB2DACF6840019ADF1 /* Functions */,
+				E09426FD2DACF6840019ADF1 /* PostgREST */,
+				E09426FF2DACF6840019ADF1 /* Realtime */,
+				E09427012DACF6840019ADF1 /* Storage */,
+				E09427032DACF6840019ADF1 /* Supabase */,
 			);
 			productName = sleep_now;
 			productReference = E09426B52DA909770019ADF1 /* sleep_now.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E09426D32DA92D4F0019ADF1 /* SleepShieldMonitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E09426E22DA92D4F0019ADF1 /* Build configuration list for PBXNativeTarget "SleepShieldMonitor" */;
+			buildPhases = (
+				E09426D02DA92D4F0019ADF1 /* Sources */,
+				E09426D12DA92D4F0019ADF1 /* Frameworks */,
+				E09426D22DA92D4F0019ADF1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E09426D52DA92D4F0019ADF1 /* SleepShieldMonitor */,
+			);
+			name = SleepShieldMonitor;
+			packageProductDependencies = (
+			);
+			productName = SleepShieldMonitor;
+			productReference = E09426D42DA92D4F0019ADF1 /* SleepShieldMonitor.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -83,6 +181,9 @@
 					E09426B42DA909770019ADF1 = {
 						CreatedOnToolsVersion = 16.3;
 					};
+					E09426D32DA92D4F0019ADF1 = {
+						CreatedOnToolsVersion = 16.3;
+					};
 				};
 			};
 			buildConfigurationList = E09426B02DA909770019ADF1 /* Build configuration list for PBXProject "sleep_now" */;
@@ -94,18 +195,29 @@
 			);
 			mainGroup = E09426AC2DA909770019ADF1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E09426F82DACF6840019ADF1 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E09426B62DA909770019ADF1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E09426B42DA909770019ADF1 /* sleep_now */,
+				E09426D32DA92D4F0019ADF1 /* SleepShieldMonitor */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E09426B32DA909770019ADF1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E09426D22DA92D4F0019ADF1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +234,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E09426D02DA92D4F0019ADF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E09426DF2DA92D4F0019ADF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E09426D32DA92D4F0019ADF1 /* SleepShieldMonitor */;
+			targetProxy = E09426DE2DA92D4F0019ADF1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E09426BE2DA909790019ADF1 /* Debug */ = {
@@ -178,7 +305,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -236,7 +363,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -251,6 +378,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = sleep_now/sleep_now.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HF7RHFRX38;
@@ -279,6 +407,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = sleep_now/sleep_now.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HF7RHFRX38;
@@ -296,6 +425,58 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "xg.sleep-now";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E09426E32DA92D4F0019ADF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SleepShieldMonitor/SleepShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HF7RHFRX38;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SleepShieldMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SleepShieldMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "xg.sleep-now.SleepShieldMonitor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E09426E42DA92D4F0019ADF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SleepShieldMonitor/SleepShieldMonitor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HF7RHFRX38;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SleepShieldMonitor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SleepShieldMonitor;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "xg.sleep-now.SleepShieldMonitor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -323,7 +504,60 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		E09426E22DA92D4F0019ADF1 /* Build configuration list for PBXNativeTarget "SleepShieldMonitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E09426E32DA92D4F0019ADF1 /* Debug */,
+				E09426E42DA92D4F0019ADF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E09426F82DACF6840019ADF1 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E09426F92DACF6840019ADF1 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E09426F82DACF6840019ADF1 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		E09426FB2DACF6840019ADF1 /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E09426F82DACF6840019ADF1 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		E09426FD2DACF6840019ADF1 /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E09426F82DACF6840019ADF1 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		E09426FF2DACF6840019ADF1 /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E09426F82DACF6840019ADF1 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		E09427012DACF6840019ADF1 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E09426F82DACF6840019ADF1 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		E09427032DACF6840019ADF1 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E09426F82DACF6840019ADF1 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E09426AD2DA909770019ADF1 /* Project object */;
 }
