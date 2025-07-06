@@ -1,0 +1,88 @@
+/* 
+  Localizable.strings
+  sleep_now
+
+  Created by 张曦戈 on 2025/4/11.
+  
+*/
+
+// User Name
+"default_user_name" = "智者";
+
+// Motivational Quotes by Hour
+"quote_0_4" = "夜色深沉，愿你梦中有星辰。";
+"quote_5_7" = "晨光微露，为你带来新的一天。";
+"quote_8_11" = "专注当下，每一刻都充满力量。";
+"quote_12_13" = "午后小憩，为自己充电。";
+"quote_14_17" = "继续前行，梦想越来越近。";
+"quote_18_20" = "暮色归家，也是心灵的归宿。";
+"quote_21_23" = "放下疲惫，准备好梦。";
+"quote_default" = "活在当下，享受每一秒。";
+
+// Color Theme Names
+"theme_deep_night_blue" = "深夜蓝";
+"theme_mysterious_purple_night" = "神秘紫夜";
+"theme_serene_blue_purple" = "宁静蓝紫";
+"theme_deep_blue_night" = "深蓝夜空";
+"theme_pre_dawn_night" = "黎明前夜";
+"theme_dawn_twilight" = "黎明晨光";
+"theme_sunrise_pink_orange" = "日出粉橙";
+"theme_golden_morning_light" = "金色晨光";
+"theme_fresh_blue_green" = "清新蓝绿";
+"theme_mint_green_blue" = "薄荷绿蓝";
+"theme_emerald_fresh" = "翡翠清新";
+"theme_lemon_yellow_green" = "柠檬黄绿";
+"theme_bright_sky_blue" = "明亮天蓝";
+"theme_azure_sky" = "天青色";
+"theme_cyan_blue_tone" = "青蓝色调";
+"theme_warm_gold_blue" = "暖金蓝";
+"theme_golden_hour" = "黄金时光";
+"theme_warm_orange_gold" = "暖橙金";
+"theme_sunset_orange_red" = "日落橙红";
+"theme_fiery_red_dusk" = "火红黄昏";
+"theme_purple_red_dusk" = "紫红黄昏";
+"theme_deep_purple_night" = "深紫夜空";
+"theme_blue_purple_night_sky" = "蓝紫夜空";
+"theme_deep_night_blue_purple" = "深夜蓝紫";
+"theme_unknown" = "未知";
+
+// Settings
+"settings_title" = "设置";
+
+// Sleep Settings View
+"schedule_section" = "🕒 时间安排";
+"start_time" = "开始时间：";
+"end_time" = "结束时间：";
+"apps_to_block_section" = "📱 要屏蔽的应用";
+"select_apps_to_block" = "选择要屏蔽的应用";
+"apps_selected" = "个应用";
+"apps_selected_format" = "已选择 %d 个应用";
+"sleep_mode_activated" = "睡眠模式已激活";
+"sleep_mode_deactivated" = "睡眠模式未激活";
+"currently_in_sleep_time" = "当前在睡眠时间内";
+"waiting_for_sleep_time" = "等待睡眠时间";
+"turn_off_sleep_mode" = "关闭睡眠模式";
+"turn_on_sleep_mode" = "开启睡眠模式";
+"sleep_schedule_settings" = "设置睡眠计划";
+"done" = "完成";
+"select_activities" = "选取活动";
+
+// Week days (short form)
+"weekday_sunday" = "日";
+"weekday_monday" = "一";
+"weekday_tuesday" = "二";
+"weekday_wednesday" = "三";
+"weekday_thursday" = "四";
+"weekday_friday" = "五";
+"weekday_saturday" = "六";
+
+// Notifications
+"notification_open_app" = "打开应用";
+"notification_sleep_mode_enabled" = "睡眠模式已开启";
+"notification_sleep_mode_body" = "到睡眠时间将自动屏蔽选定的应用";
+"notification_sleep_time_started" = "睡眠时间到了";
+"notification_sleep_time_started_body" = "已屏蔽选定的应用，祝您晚安！";
+"notification_sleep_time_ended" = "睡眠时间结束";
+"notification_sleep_time_ended_body" = "所有应用已解除屏蔽，早安！";
+"notification_sleep_mode_starting" = "睡眠模式即将开启";
+"notification_sleep_mode_starting_body" = "5分钟后将开启睡眠模式"; 

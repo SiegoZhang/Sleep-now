@@ -1,0 +1,88 @@
+/* 
+  Localizable.strings
+  sleep_now
+
+  Created by 张曦戈 on 2025/4/11.
+  
+*/
+
+// User Name
+"default_user_name" = "Sage";
+
+// Motivational Quotes by Hour
+"quote_0_4" = "The night is deep, may you have stars in your dreams.";
+"quote_5_7" = "Morning sunlight brings you a new day.";
+"quote_8_11" = "Focus on the present, every moment is full of power.";
+"quote_12_13" = "Afternoon rest, recharge yourself.";
+"quote_14_17" = "Keep going, dreams are getting closer.";
+"quote_18_20" = "Dusk is coming home, and also the soul's rest.";
+"quote_21_23" = "Let go of fatigue, prepare for a good dream.";
+"quote_default" = "Live in the moment, enjoy every second.";
+
+// Color Theme Names
+"theme_deep_night_blue" = "Deep Night Blue";
+"theme_mysterious_purple_night" = "Mysterious Purple Night";
+"theme_serene_blue_purple" = "Serene Blue Purple";
+"theme_deep_blue_night" = "Deep Blue Night";
+"theme_pre_dawn_night" = "Pre-Dawn Night";
+"theme_dawn_twilight" = "Dawn Twilight";
+"theme_sunrise_pink_orange" = "Sunrise Pink Orange";
+"theme_golden_morning_light" = "Golden Morning Light";
+"theme_fresh_blue_green" = "Fresh Blue Green";
+"theme_mint_green_blue" = "Mint Green Blue";
+"theme_emerald_fresh" = "Emerald Fresh";
+"theme_lemon_yellow_green" = "Lemon Yellow Green";
+"theme_bright_sky_blue" = "Bright Sky Blue";
+"theme_azure_sky" = "Azure Sky";
+"theme_cyan_blue_tone" = "Cyan Blue Tone";
+"theme_warm_gold_blue" = "Warm Gold Blue";
+"theme_golden_hour" = "Golden Hour";
+"theme_warm_orange_gold" = "Warm Orange Gold";
+"theme_sunset_orange_red" = "Sunset Orange Red";
+"theme_fiery_red_dusk" = "Fiery Red Dusk";
+"theme_purple_red_dusk" = "Purple Red Dusk";
+"theme_deep_purple_night" = "Deep Purple Night";
+"theme_blue_purple_night_sky" = "Blue Purple Night Sky";
+"theme_deep_night_blue_purple" = "Deep Night Blue Purple";
+"theme_unknown" = "Unknown";
+
+// Settings
+"settings_title" = "Settings";
+
+// Sleep Settings View
+"schedule_section" = "🕒 Schedule";
+"start_time" = "Start time:";
+"end_time" = "End time:";
+"apps_to_block_section" = "📱 Apps to Block";
+"select_apps_to_block" = "Select Apps to Block";
+"apps_selected" = "apps selected";
+"apps_selected_format" = "%d apps selected";
+"sleep_mode_activated" = "Sleep Mode Activated";
+"sleep_mode_deactivated" = "Sleep Mode Deactivated";
+"currently_in_sleep_time" = "Currently in sleep time";
+"waiting_for_sleep_time" = "Waiting for sleep time";
+"turn_off_sleep_mode" = "Turn Off Sleep Mode";
+"turn_on_sleep_mode" = "Turn On Sleep Mode";
+"sleep_schedule_settings" = "Settings";
+"done" = "Done";
+"select_activities" = "Select Activities";
+
+// Week days (short form)
+"weekday_sunday" = "S";
+"weekday_monday" = "M";
+"weekday_tuesday" = "T";
+"weekday_wednesday" = "W";
+"weekday_thursday" = "T";
+"weekday_friday" = "F";
+"weekday_saturday" = "S";
+
+// Notifications
+"notification_open_app" = "Open App";
+"notification_sleep_mode_enabled" = "Sleep Mode Enabled";
+"notification_sleep_mode_body" = "Selected apps will be automatically blocked during sleep time";
+"notification_sleep_time_started" = "Sleep Time Started";
+"notification_sleep_time_started_body" = "Selected apps have been blocked. Good night!";
+"notification_sleep_time_ended" = "Sleep Time Ended";
+"notification_sleep_time_ended_body" = "All apps have been unblocked. Good morning!";
+"notification_sleep_mode_starting" = "Sleep Mode Starting Soon";
+"notification_sleep_mode_starting_body" = "Sleep mode will start in 5 minutes"; 

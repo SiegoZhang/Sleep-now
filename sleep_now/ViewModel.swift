@@ -11,14 +11,12 @@ class ShieldViewModel: ObservableObject {
     @Published var endTime = Date().addingTimeInterval(3600)
     @Published var isShieldActive = false
     @Published var isSleepModeEnabled = false
-    @Published var selectedSleepMusic: MusicTrack?
-    @Published var showAppPicker = false
-    @Published var showMusicPicker = false
     @Published var selectedDays: Set<Int> = [1, 2, 3, 4, 5] // Default to weekdays (Mon-Fri)
     
     // Sleep plan properties
     @Published var sleepPlans: [SleepPlan] = []
     @Published var selectedPlanId: UUID?
+    @Published var showAppPicker = false
     
     private let store = ManagedSettingsStore()
     private let userDefaults = UserDefaults(suiteName: "group.xg.sleep-now")
@@ -27,7 +25,6 @@ class ShieldViewModel: ObservableObject {
         loadSettings()
         setupNotifications()
         checkAndApplyShieldIfNeeded()
-        
     }
     
     private func loadSettings() {
@@ -48,29 +45,12 @@ class ShieldViewModel: ObservableObject {
             selectedDays = Set(savedDays)
         }
         
-        // Load saved music selection
-        if let savedMusic = userDefaults?.dictionary(forKey: "selectedSleepMusic") {
-            if let id = savedMusic["id"] as? Int,
-               let title = savedMusic["title"] as? String,
-               let artist = savedMusic["artist"] as? String,
-               let coverImage = savedMusic["coverImage"] as? String {
-                selectedSleepMusic = MusicTrack(id: id, title: title, artist: artist, coverImage: coverImage)
-            }
-        }
-        
         // Load selected plan ID
         if let savedPlanIdString = userDefaults?.string(forKey: "selectedPlanId"),
            let savedPlanId = UUID(uuidString: savedPlanIdString) {
             selectedPlanId = savedPlanId
         }
     }
-    
-   
-    
-    
-
-    
-    
     
     private func saveSettings() {
         userDefaults?.set(startTime, forKey: "startTime")
@@ -82,19 +62,6 @@ class ShieldViewModel: ObservableObject {
         
         // Save selected days
         userDefaults?.set(Array(selectedDays), forKey: "selectedDays")
-        
-        // Save music selection
-        if let music = selectedSleepMusic {
-            let musicDict: [String: Any] = [
-                "id": music.id,
-                "title": music.title,
-                "artist": music.artist,
-                "coverImage": music.coverImage
-            ]
-            userDefaults?.set(musicDict, forKey: "selectedSleepMusic")
-        }
-        
-       
     }
     
     // Public method to save just the app selection
@@ -103,15 +70,6 @@ class ShieldViewModel: ObservableObject {
             userDefaults?.set(encodedSelection, forKey: "selection")
             print("Selection updated: \(selection.applicationTokens.count) apps selected")
         }
-        
-        
-    }
-    
-    // Method to set the sleep music
-    func setSleepMusic(_ track: MusicTrack) {
-        selectedSleepMusic = track
-        saveSettings()
-        print("Sleep music set: \(track.title)")
     }
     
     private func setupNotifications() {
@@ -123,7 +81,7 @@ class ShieldViewModel: ObservableObject {
         
         // Add a notification action to open the app
         let openAppAction = UNNotificationAction(identifier: "OPEN_APP_ACTION",
-                                                 title: "打开应用",
+                                                 title: NSLocalizedString("notification_open_app", comment: "Open app notification action"),
                                                  options: [.foreground])
 
         // Add the action to a category
@@ -156,8 +114,8 @@ class ShieldViewModel: ObservableObject {
             
             // Send notification
             let content = UNMutableNotificationContent()
-            content.title = "睡眠模式已开启"
-            content.body = "到睡眠时间将自动屏蔽选定的应用"
+            content.title = NSLocalizedString("notification_sleep_mode_enabled", comment: "Sleep mode enabled notification title")
+            content.body = NSLocalizedString("notification_sleep_mode_body", comment: "Sleep mode enabled notification body")
             content.sound = .default
             content.categoryIdentifier = "SLEEP_CATEGORY"
             
@@ -166,17 +124,15 @@ class ShieldViewModel: ObservableObject {
         } else {
             // Remove shield if it's active
             removeShield()
-            // Stop music if playing and not user-initiated
-            if MusicPlayerViewModel.shared.isPlaying && !MusicPlayerViewModel.shared.isUserPlaying {
-                MusicPlayerViewModel.shared.stopPlayback()
-            }
         }
     }
     
     private func scheduleTimeChecks() {
         // Cancel existing time checks
         Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-            self?.checkAndApplyShieldIfNeeded()
+            Task { @MainActor in
+                self?.checkAndApplyShieldIfNeeded()
+            }
         }
     }
     
@@ -207,7 +163,6 @@ class ShieldViewModel: ObservableObject {
         }
         
         // Extract just the time components
-        let nowComponents = calendar.dateComponents([.hour, .minute], from: now)
         let startComponents = calendar.dateComponents([.hour, .minute], from: startTime)
         let endComponents = calendar.dateComponents([.hour, .minute], from: endTime)
         
@@ -227,20 +182,8 @@ class ShieldViewModel: ObservableObject {
         // Apply or remove shield based on time
         if isWithinSleepPeriod && !isShieldActive {
             applyShield()
-            // Play sleep music if available
-            playSleepMusic()
         } else if !isWithinSleepPeriod && isShieldActive {
             removeShield()
-            // Stop sleep music if playing and not user-initiated
-            if MusicPlayerViewModel.shared.isPlaying && !MusicPlayerViewModel.shared.isUserPlaying {
-                MusicPlayerViewModel.shared.stopPlayback()
-            }
-        }
-    }
-    
-    private func playSleepMusic() {
-        if let musicTrack = selectedSleepMusic {
-            MusicPlayerViewModel.shared.playSleepMusicIfNotUserPlaying(musicTrack)
         }
     }
     
@@ -259,8 +202,8 @@ class ShieldViewModel: ObservableObject {
             
             // 发送通知
             let content = UNMutableNotificationContent()
-            content.title = "睡眠时间到了"
-            content.body = "已屏蔽选定的应用，祝您晚安！"
+            content.title = NSLocalizedString("notification_sleep_time_started", comment: "Sleep time started notification title")
+            content.body = NSLocalizedString("notification_sleep_time_started_body", comment: "Sleep time started notification body")
             content.sound = .default
             content.categoryIdentifier = "SLEEP_CATEGORY"
             
@@ -281,15 +224,10 @@ class ShieldViewModel: ObservableObject {
         store.shield.webDomains = nil
         isShieldActive = false
         
-        // Stop sleep music if playing and not user-initiated
-        if MusicPlayerViewModel.shared.isPlaying && !MusicPlayerViewModel.shared.isUserPlaying {
-            MusicPlayerViewModel.shared.stopPlayback()
-        }
-        
         if isSleepModeEnabled {
             let content = UNMutableNotificationContent()
-            content.title = "睡眠时间结束"
-            content.body = "所有应用已解除屏蔽，早安！"
+            content.title = NSLocalizedString("notification_sleep_time_ended", comment: "Sleep time ended notification title")
+            content.body = NSLocalizedString("notification_sleep_time_ended_body", comment: "Sleep time ended notification body")
             content.sound = .default
             
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
@@ -310,7 +248,6 @@ class ShieldViewModel: ObservableObject {
         let calendar = Calendar.current
         
         // Extract just the time components from our dates
-        let nowComponents = calendar.dateComponents([.hour, .minute], from: now)
         let startComponents = calendar.dateComponents([.hour, .minute], from: startTime)
         let endComponents = calendar.dateComponents([.hour, .minute], from: endTime)
         
@@ -328,8 +265,8 @@ class ShieldViewModel: ObservableObject {
             // Start notification
             if timeUntilStart > 300 {
                 let startContent = UNMutableNotificationContent()
-                startContent.title = "睡眠模式即将开启"
-                startContent.body = "5分钟后将开启睡眠模式"
+                startContent.title = NSLocalizedString("notification_sleep_mode_starting", comment: "Sleep mode starting notification title")
+                startContent.body = NSLocalizedString("notification_sleep_mode_starting_body", comment: "Sleep mode starting notification body")
                 startContent.sound = .default
                 
                 let startTrigger = UNTimeIntervalNotificationTrigger(timeInterval: timeUntilStart - 300, repeats: false)

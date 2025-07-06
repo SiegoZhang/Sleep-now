@@ -7,19 +7,17 @@
 
 import SwiftUI
 import Foundation
-
-// Global user manager to store the current user ID
-class UserManager {
-    static let shared = UserManager()
-    let currentUserId = UUID(uuidString: "3ab6853f-b3ac-4364-9743-992c853f8026")!
-    
-    private init() {} // Singleton
-}
+import CoreData
 
 @main
 struct sleep_nowApp: App {
     @StateObject private var shieldViewModel = ShieldViewModel()
     @Environment(\.scenePhase) private var scenePhase
+    
+    init() {
+        // 确保在应用启动时注册自定义值转换器
+        registerValueTransformers()
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -27,4 +25,18 @@ struct sleep_nowApp: App {
         }
     }
     
+    // 注册 NSSecureUnarchiveFromData 值转换器
+    private func registerValueTransformers() {
+        // 确保已注册 StringArrayTransformer
+        ValueTransformer.setValueTransformer(
+            StringArrayTransformer(),
+            forName: NSValueTransformerName(StringArrayTransformer.transformerName)
+        )
+        
+        // 确保已注册 IntArrayTransformer
+        ValueTransformer.setValueTransformer(
+            IntArrayTransformer(),
+            forName: NSValueTransformerName(IntArrayTransformer.transformerName)
+        )
+    }
 }

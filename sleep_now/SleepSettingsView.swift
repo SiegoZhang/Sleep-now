@@ -14,247 +14,190 @@ struct SleepSettingsView: View {
     private let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a"
+        formatter.locale = Locale.current
         return formatter
     }()
     
     init(viewModel: ShieldViewModel) {
         self.model = viewModel
-        
-        // Customize form appearance for dark theme
-        UITableView.appearance().backgroundColor = .black
-        UITableViewCell.appearance().backgroundColor = .black
-        
-        // Make section headers white
-        UITableView.appearance().sectionHeaderTopPadding = 20
     }
     
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.black.edgesIgnoringSafeArea(.all)
-                
-                Form {
-                    Section(header: Text("🕒 Schedule").foregroundColor(.white)) {
-                        HStack {
-                            Text("Start time:")
-                                .foregroundColor(.white)
-                            Spacer()
-                            Text(timeFormatter.string(from: model.startTime))
-                                .foregroundColor(.white)
-                                .padding(.horizontal)
-                                .padding(.vertical, 8)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(8)
-                                .onTapGesture {
-                                    withAnimation {
-                                        showStartTimePicker.toggle()
-                                        if showStartTimePicker {
-                                            showEndTimePicker = false
-                                        }
+            Form {
+                Section(header: Text(NSLocalizedString("schedule_section", comment: "Schedule section header"))) {
+                    HStack {
+                        Text(NSLocalizedString("start_time", comment: "Start time label"))
+                        Spacer()
+                        Text(timeFormatter.string(from: model.startTime))
+                            .foregroundColor(.primary)
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(8)
+                            .onTapGesture {
+                                withAnimation {
+                                    showStartTimePicker.toggle()
+                                    if showStartTimePicker {
+                                        showEndTimePicker = false
                                     }
                                 }
-                        }
-                        .listRowBackground(Color.black)
-                        
-                        if showStartTimePicker {
-                            DatePicker("", selection: $model.startTime, displayedComponents: [.hourAndMinute])
-                                .datePickerStyle(.wheel)
-                                .labelsHidden()
-                                .onChange(of: model.startTime) { _ in
-                                    model.scheduleShield()
-                                }
-                                .padding(.vertical, 6)
-                                .frame(maxHeight: 200)
-                                .environment(\.locale, Locale(identifier: "en_US_POSIX"))
-                                .colorScheme(.dark)
-                                .listRowBackground(Color.black)
-                        }
-                        
-                        HStack {
-                            Text("End time:")
-                                .foregroundColor(.white)
-                            Spacer()
-                            Text(timeFormatter.string(from: model.endTime))
-                                .foregroundColor(.white)
-                                .padding(.horizontal)
-                                .padding(.vertical, 8)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(8)
-                                .onTapGesture {
-                                    withAnimation {
-                                        showEndTimePicker.toggle()
-                                        if showEndTimePicker {
-                                            showStartTimePicker = false
-                                        }
+                            }
+                    }
+                    
+                    if showStartTimePicker {
+                        DatePicker("", selection: $model.startTime, displayedComponents: [.hourAndMinute])
+                            .datePickerStyle(.wheel)
+                            .labelsHidden()
+                            .onChange(of: model.startTime) { _ in
+                                model.scheduleShield()
+                            }
+                            .padding(.vertical, 6)
+                            .frame(maxHeight: 200)
+                            .environment(\.locale, Locale.current)
+                    }
+                    
+                    HStack {
+                        Text(NSLocalizedString("end_time", comment: "End time label"))
+                        Spacer()
+                        Text(timeFormatter.string(from: model.endTime))
+                            .foregroundColor(.primary)
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(8)
+                            .onTapGesture {
+                                withAnimation {
+                                    showEndTimePicker.toggle()
+                                    if showEndTimePicker {
+                                        showStartTimePicker = false
                                     }
                                 }
-                        }
-                        .listRowBackground(Color.black)
-                        
-                        if showEndTimePicker {
-                            DatePicker("", selection: $model.endTime, displayedComponents: [.hourAndMinute])
-                                .datePickerStyle(.wheel)
-                                .labelsHidden()
-                                .onChange(of: model.endTime) { _ in
-                                    model.scheduleShield()
-                                }
-                                .padding(.vertical, 6)
-                                .frame(maxHeight: 200)
-                                .environment(\.locale, Locale(identifier: "en_US_POSIX"))
-                                .colorScheme(.dark)
-                                .listRowBackground(Color.black)
-                        }
-                        
-                        HStack(spacing: 8) {
-                            ForEach(0..<7) { index in
-                                let weekday = ["S", "M", "T", "W", "T", "F", "S"][index]
-                                Button(action: {
-                                    model.toggleDay(index)
-                                }) {
-                                    Text(weekday)
-                                        .font(.system(.body, design: .rounded))
-                                        .frame(width: 36, height: 36)
-                                        .background(model.selectedDays.contains(index) ? Color.blue : Color(white: 0.2))
-                                        .foregroundColor(model.selectedDays.contains(index) ? .white : .gray)
-                                        .clipShape(Circle())
-                                }
-                                .buttonStyle(BorderlessButtonStyle())
                             }
-                        }
-                        .padding(.vertical, 8)
-                        .listRowBackground(Color.black)
                     }
                     
-                    Section(header: Text("📱 要屏蔽的应用").foregroundColor(.white)) {
-                        Button {
-                            Task {
-                                await model.requestAuthorization()
-                                model.showAppPicker = true
+                    if showEndTimePicker {
+                        DatePicker("", selection: $model.endTime, displayedComponents: [.hourAndMinute])
+                            .datePickerStyle(.wheel)
+                            .labelsHidden()
+                            .onChange(of: model.endTime) { _ in
+                                model.scheduleShield()
                             }
-                        } label: {
-                            HStack {
-                                Text("选择要屏蔽的应用")
-                                    .foregroundColor(.white)
-                                    .padding(.vertical, 8)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        .listRowBackground(Color.black)
-                        .background(
-                            NavigationLink(isActive: $model.showAppPicker) {
-                                AppsSelectionView()
-                                    .environmentObject(model)
-                            } label: {
-                                EmptyView()
-                            }
-                        )
-                        
-                        if !model.selection.applicationTokens.isEmpty {
-                            Text("已选择 \(model.selection.applicationTokens.count) 个应用")
-                                .foregroundColor(.green)
-                                .listRowBackground(Color.black)
-                        }
+                            .padding(.vertical, 6)
+                            .frame(maxHeight: 200)
+                            .environment(\.locale, Locale.current)
                     }
                     
-                    Section(header: Text("🎵 睡眠音乐").foregroundColor(.white)) {
-                        Button {
-                            model.showMusicPicker = true
-                        } label: {
-                            HStack {
-                                Text("选择睡眠音乐")
-                                    .foregroundColor(.white)
-                                    .padding(.vertical, 8)
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.gray)
+                    HStack(spacing: 8) {
+                        ForEach(0..<7) { index in
+                            let weekdayKeys = ["weekday_sunday", "weekday_monday", "weekday_tuesday", "weekday_wednesday", "weekday_thursday", "weekday_friday", "weekday_saturday"]
+                            let weekday = NSLocalizedString(weekdayKeys[index], comment: "Weekday abbreviation")
+                            Button(action: {
+                                model.toggleDay(index)
+                            }) {
+                                Text(weekday)
+                                    .font(.system(.body, design: .rounded))
+                                    .frame(width: 36, height: 36)
+                                    .background(model.selectedDays.contains(index) ? Color.blue : Color(UIColor.systemGray5))
+                                    .foregroundColor(model.selectedDays.contains(index) ? .white : .primary)
+                                    .clipShape(Circle())
                             }
-                        }
-                        .listRowBackground(Color.black)
-                        .background(
-                            NavigationLink(isActive: $model.showMusicPicker) {
-                                SleepMusicView()
-                                    .environmentObject(model)
-                            } label: {
-                                EmptyView()
-                            }
-                        )
-                        
-                        if let currentTrack = model.selectedSleepMusic {
-                            HStack {
-                                Image(systemName: currentTrack.coverImage)
-                                    .foregroundColor(.blue)
-                                Text(currentTrack.title)
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Text(currentTrack.artist)
-                                    .foregroundColor(.gray)
-                                    .font(.caption)
-                            }
-                            .listRowBackground(Color.black)
-                        } else {
-                            Text("未选择音乐")
-                                .foregroundColor(.gray)
-                                .listRowBackground(Color.black)
+                            .buttonStyle(BorderlessButtonStyle())
                         }
                     }
-                    
-                    Section(header: Text("睡眠模式").foregroundColor(.white)) {
-                        Toggle(isOn: $model.isSleepModeEnabled) {
-                            Text("开启睡眠模式")
-                                .foregroundColor(.white)
-                        }
-                        .onChange(of: model.isSleepModeEnabled) { _ in
-                            model.toggleSleepMode()
-                        }
-                        .listRowBackground(Color.black)
-                        
-                        if model.isSleepModeEnabled {
-                            HStack {
-                                Image(systemName: model.isShieldActive ? "lock.fill" : "lock.open.fill")
-                                    .foregroundColor(.white)
-                                Text(model.isShieldActive ? "睡眠模式已激活" : "睡眠模式未激活")
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Text(statusDescription())
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            }
-                            .listRowBackground(Color.black)
-                        }
-                    }
-                    
-                   
+                    .padding(.vertical, 8)
                 }
-                .scrollContentBackground(.hidden)
+                
+                Section(header: Text(NSLocalizedString("apps_to_block_section", comment: "Apps to block section header"))) {
+                    Button {
+                        Task {
+                            await model.requestAuthorization()
+                            model.showAppPicker = true
+                        }
+                    } label: {
+                        HStack {
+                            Text(NSLocalizedString("select_apps_to_block", comment: "Select apps to block button"))
+                                .padding(.vertical, 8)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .background {
+                        NavigationLink(isActive: $model.showAppPicker) {
+                            AppsSelectionView()
+                                .environmentObject(model)
+                        } label: {
+                            EmptyView()
+                        }
+                    }
+                    
+                    if !model.selection.applicationTokens.isEmpty {
+                        Text(String(format: NSLocalizedString("apps_selected_format", comment: "Apps selected format"), model.selection.applicationTokens.count))
+                            .foregroundColor(.green)
+                    }
+                }
+                
+                Section() {
+                    if model.isSleepModeEnabled {
+                        HStack {
+                            Image(systemName: model.isShieldActive ? "lock.fill" : "lock.open.fill")
+                            Text(model.isShieldActive ? NSLocalizedString("sleep_mode_activated", comment: "Sleep mode activated") : NSLocalizedString("sleep_mode_deactivated", comment: "Sleep mode deactivated"))
+                            Spacer()
+                            Text(statusDescription())
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    
+                    HStack {
+                        Spacer()
+                        VStack(spacing: 16) {
+                            Button(action: {
+                                model.toggleSleepMode()
+                            }) {
+                                Image(systemName: "power")
+                                    .font(.system(size: 50, weight: .bold))
+                                    .frame(width: 120, height: 120)
+                                    .foregroundColor(.white)
+                                    .background(model.isSleepModeEnabled ? Color.red : Color.blue)
+                                    .clipShape(Circle())
+                                    .shadow(color: (model.isSleepModeEnabled ? Color.red : Color.blue).opacity(0.3), radius: 8, y: 4)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            
+                            Text(model.isSleepModeEnabled ? NSLocalizedString("turn_off_sleep_mode", comment: "Turn off sleep mode") : NSLocalizedString("turn_on_sleep_mode", comment: "Turn on sleep mode"))
+                                .font(.headline)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                    }
+                    .padding(.vertical)
+                    .listRowBackground(Color.clear)
+                }
             }
-            .navigationTitle("设置睡眠计划")
+            .navigationTitle(NSLocalizedString("sleep_schedule_settings", comment: "Sleep schedule settings title"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("完成") {
+                    Button(NSLocalizedString("done", comment: "Done button")) {
                         model.updateCurrentPlan()
                         dismiss()
                     }
-                    .foregroundColor(.white)
                 }
             }
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarBackground(Color.black, for: .navigationBar)
         }
         .onDisappear {
             model.updateCurrentPlan()
         }
-        .preferredColorScheme(.dark)
     }
     
     private func statusDescription() -> String {
         if model.isShieldActive {
-            return "当前在睡眠时间内"
+            return NSLocalizedString("currently_in_sleep_time", comment: "Currently in sleep time")
         } else {
-            return "等待睡眠时间"
+            return NSLocalizedString("waiting_for_sleep_time", comment: "Waiting for sleep time")
         }
     }
 }
@@ -265,18 +208,16 @@ struct AppsSelectionView: View {
     
     var body: some View {
         FamilyActivityPicker(selection: $model.selection)
-            .navigationTitle("选取活动")
+            .navigationTitle(NSLocalizedString("select_activities", comment: "Select activities title"))
             .navigationBarTitleDisplayMode(.inline)
             .onChange(of: model.selection) { _ in
                 model.saveSelection()
             }
-            .preferredColorScheme(.dark)
     }
 }
 
 struct SleepSettingsPreview: PreviewProvider {
     static var previews: some View {
         SleepSettingsView(viewModel: ShieldViewModel())
-            .preferredColorScheme(.dark)
     }
 } 
