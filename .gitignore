@@ -1,0 +1,43 @@
+# Xcode
+.DS_Store
+build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.moved-aside
+*.swp
+*~.nib
+DerivedData/
+
+# 敏感配置文件
+*.env
+config.json
+secrets.json
+private_keys/
+*.pem
+*.p12
+*.key
+
+# API Keys 和令牌
+**/api_keys.swift
+**/secrets.swift
+**/config.swift
+**/credentials.swift
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志文件
+*.log
+logs/ 
