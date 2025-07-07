@@ -1,4 +1,4 @@
-# sleep now - iOS Sleep Management App
+# Sleep-now - iOS Sleep Management App
 
 <div align="center">
   <img src="https://img.shields.io/badge/Platform-iOS-blue.svg" alt="Platform iOS" />
@@ -9,7 +9,7 @@
 
 ## Overview
 
-**sleep now** helps you maintain healthy sleep habits by automatically blocking distracting apps during designated sleep hours. Built with Apple's Family Controls framework for reliable system-level app blocking.
+**Sleep-now** helps you maintain healthy sleep habits by automatically blocking distracting apps during designated sleep hours. Built with Apple's Family Controls framework for reliable system-level app blocking.
 
 ## ✨ Features
 
@@ -28,8 +28,8 @@
 
 ### Installation
 ```bash
-git clone https://github.com/SiegoZhang/Sleep.git
-cd Sleep
+git clone https://github.com/SiegoZhang/Sleep-now.git
+cd Sleep-now
 open sleep_now.xcodeproj
 ```
 
