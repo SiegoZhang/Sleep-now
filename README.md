@@ -44,10 +44,6 @@
 - **Intuitive time picker** with AM/PM format
 - **Visual feedback** for all user interactions
 
-## 📱 Screenshots
-
-*[Add screenshots of your app here]*
-
 ## 🛠️ Technical Architecture
 
 ### Core Technologies
@@ -159,16 +155,6 @@ The app provides several notification types:
 The app supports multiple languages:
 - **English** (en)
 - **Chinese Simplified** (zh-Hans)
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📋 Requirements
 
