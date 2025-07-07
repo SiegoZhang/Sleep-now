@@ -1,4 +1,4 @@
-# Sleep - iOS Sleep Management App
+# Sleep Now - iOS Sleep Management App
 
 <div align="center">
   <img src="https://img.shields.io/badge/Platform-iOS-blue.svg" alt="Platform iOS" />
@@ -10,7 +10,7 @@
 
 ## Overview
 
-**Sleep** is a comprehensive iOS application designed to help users maintain healthy sleep habits by automatically blocking distracting apps during designated sleep hours. Built with Apple's Family Controls framework, the app provides intelligent app blocking, customizable sleep schedules, and a beautiful user interface.
+**Sleep Now** is a comprehensive iOS application designed to help users maintain healthy sleep habits by automatically blocking distracting apps during designated sleep hours. Built with Apple's Family Controls framework, the app provides intelligent app blocking, customizable sleep schedules, and a beautiful user interface.
 
 ## ✨ Key Features
 
