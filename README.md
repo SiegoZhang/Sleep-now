@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/Platform-iOS-blue.svg" alt="Platform iOS" />
   <img src="https://img.shields.io/badge/Swift-5.0-orange.svg" alt="Swift 5.0" />
   <img src="https://img.shields.io/badge/iOS-15.0+-blue.svg" alt="iOS 15.0+" />
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" />
+  <img src="https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg" alt="Custom License" />
 </div>
 
 ## Overview
@@ -26,12 +26,6 @@
 - Xcode 14.0+
 - Apple Developer Account (for Family Controls)
 
-### Installation
-```bash
-git clone https://github.com/SiegoZhang/Sleep-now.git
-cd Sleep-now
-open sleep_now.xcodeproj
-```
 
 ### Setup
 1. Configure Family Controls entitlement in your developer account
@@ -61,10 +55,6 @@ open sleep_now.xcodeproj
 ## 👨‍💻 Author
 
 **SiegoZhang** - [@SiegoZhang](https://github.com/SiegoZhang)
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
