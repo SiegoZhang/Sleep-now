@@ -192,28 +192,24 @@ class ShieldViewModel: ObservableObject {
         guard isSleepModeEnabled else { return }
         
         // Apply shield
-        do {
-            let shield = Shield(selectionToShield: selection)
-            store.shield.applicationCategories = .all()
-            store.shield.applications = shield.applicationTokens
-            store.shield.webDomainCategories = .all()
-            store.shield.webDomains = shield.webDomainTokens
-            isShieldActive = true
-            
-            // 发送通知
-            let content = UNMutableNotificationContent()
-            content.title = NSLocalizedString("notification_sleep_time_started", comment: "Sleep time started notification title")
-            content.body = NSLocalizedString("notification_sleep_time_started_body", comment: "Sleep time started notification body")
-            content.sound = .default
-            content.categoryIdentifier = "SLEEP_CATEGORY"
-            
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
-            UNUserNotificationCenter.current().add(request)
-            
-            print("🛡️ Shield applied")
-        } catch {
-            print("Failed to apply shield: \(error)")
-        }
+        let shield = Shield(selectionToShield: selection)
+        store.shield.applicationCategories = .all()
+        store.shield.applications = shield.applicationTokens
+        store.shield.webDomainCategories = .all()
+        store.shield.webDomains = shield.webDomainTokens
+        isShieldActive = true
+        
+        // 发送通知
+        let content = UNMutableNotificationContent()
+        content.title = NSLocalizedString("notification_sleep_time_started", comment: "Sleep time started notification title")
+        content.body = NSLocalizedString("notification_sleep_time_started_body", comment: "Sleep time started notification body")
+        content.sound = .default
+        content.categoryIdentifier = "SLEEP_CATEGORY"
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request)
+        
+        print("🛡️ Shield applied")
     }
     
     func removeShield() {
@@ -249,11 +245,9 @@ class ShieldViewModel: ObservableObject {
         
         // Extract just the time components from our dates
         let startComponents = calendar.dateComponents([.hour, .minute], from: startTime)
-        let endComponents = calendar.dateComponents([.hour, .minute], from: endTime)
         
         // Create today's dates with those time components
         let todayStart = calendar.date(bySettingHour: startComponents.hour ?? 0, minute: startComponents.minute ?? 0, second: 0, of: now) ?? now
-        let todayEnd = calendar.date(bySettingHour: endComponents.hour ?? 0, minute: endComponents.minute ?? 0, second: 0, of: now) ?? now
         
         // Calculate delays
         let delayToStart = todayStart.timeIntervalSince(now)

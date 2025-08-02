@@ -123,14 +123,6 @@ struct SleepSettingsView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
-                    .background {
-                        NavigationLink(isActive: $model.showAppPicker) {
-                            AppsSelectionView()
-                                .environmentObject(model)
-                        } label: {
-                            EmptyView()
-                        }
-                    }
                     
                     if !model.selection.applicationTokens.isEmpty {
                         Text(String(format: NSLocalizedString("apps_selected_format", comment: "Apps selected format"), model.selection.applicationTokens.count))
@@ -186,6 +178,10 @@ struct SleepSettingsView: View {
                         dismiss()
                     }
                 }
+            }
+            .navigationDestination(isPresented: $model.showAppPicker) {
+                AppsSelectionView()
+                    .environmentObject(model)
             }
         }
         .onDisappear {

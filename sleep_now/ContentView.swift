@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  sleep_now
 //
-//  Created by 张曦戈 on 2025/4/11.
+
 //
 
 import SwiftUI
@@ -42,7 +42,7 @@ struct ContentView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             ZStack {
                 // Full screen time spectrum
                 GeometryReader { geometry in
@@ -113,7 +113,7 @@ struct ContentView: View {
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(.hidden, for: .navigationBar)
+            .navigationBarHidden(true)
             .onReceive(timer) { _ in
                 currentTime = Date()
             }
@@ -124,6 +124,7 @@ struct ContentView: View {
                 SleepSettingsView(viewModel: model)
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .ignoresSafeArea(.all)
     }
     
